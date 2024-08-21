@@ -19,6 +19,7 @@ class BiodataController extends GetxController {
   }
   void setTanggalLahir(DateTime value) => tanggalLahir.value = value;
   void setAlamat(String value) => alamat.value = value;
+  
 
   // Fungsi untuk submit formulir
   void submitForm() {

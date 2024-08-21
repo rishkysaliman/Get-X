@@ -51,27 +51,27 @@ class BiodataView extends GetView<BiodataController> {
               Row(
                 children: [
                   Obx(() => Expanded(
-                    child: ListTile(
-                      title: const Text('Laki-laki'),
-                      leading: Radio<String>(
-                        value: 'Laki-laki',
-                        groupValue: controller.jenisKelamin.value,
-                        onChanged: controller.setJenisKelamin,
-                        activeColor: Colors.teal,
-                      ),
-                    ),
-                  )),
+                        child: ListTile(
+                          title: const Text('Laki-laki'),
+                          leading: Radio<String>(
+                            value: 'Laki-laki',
+                            groupValue: controller.jenisKelamin.value,
+                            onChanged: controller.setJenisKelamin,
+                            activeColor: Colors.teal,
+                          ),
+                        ),
+                      )),
                   Obx(() => Expanded(
-                    child: ListTile(
-                      title: const Text('Perempuan'),
-                      leading: Radio<String>(
-                        value: 'Perempuan',
-                        groupValue: controller.jenisKelamin.value,
-                        onChanged: controller.setJenisKelamin,
-                        activeColor: Colors.teal,
-                      ),
-                    ),
-                  )),
+                        child: ListTile(
+                          title: const Text('Perempuan'),
+                          leading: Radio<String>(
+                            value: 'Perempuan',
+                            groupValue: controller.jenisKelamin.value,
+                            onChanged: controller.setJenisKelamin,
+                            activeColor: Colors.teal,
+                          ),
+                        ),
+                      )),
                 ],
               ),
               SizedBox(height: 16),
@@ -121,9 +121,7 @@ class BiodataView extends GetView<BiodataController> {
                     }
                   },
                   controller: TextEditingController(
-                    text: controller.tanggalLahir.value
-                        .toString()
-                        .split('')[0],
+                    text: controller.tanggalLahir.value.toString().split('')[0],
                   ),
                 ),
               ),
