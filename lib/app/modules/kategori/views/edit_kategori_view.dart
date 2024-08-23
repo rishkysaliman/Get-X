@@ -3,14 +3,16 @@ import 'package:get/get.dart';
 import '../../../data/kategori_model.dart';
 import '../controllers/kategori_controller.dart';
 
-class CreateKategoriView extends StatelessWidget {
+class EditKategoriView extends StatelessWidget {
   final KategoriController controller = Get.find();
 
   final TextEditingController namaKategoriController = TextEditingController();
-  final TextEditingController slugController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final Data kategori = Get.arguments;
+    namaKategoriController.text = kategori.namaKategori!;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -29,7 +31,7 @@ class CreateKategoriView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Tambah Kategori',
+              'Update Kategori',
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -55,11 +57,11 @@ class CreateKategoriView extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  final newCategory = Data(
+                  final updatedKategori = Data(
+                    id: kategori.id,
                     namaKategori: namaKategoriController.text,
-                    slug: slugController.text,
                   );
-                  controller.addKategori(newCategory);
+                  controller.updateKategori(kategori.id!, updatedKategori);
                   Get.back();
                 },
                 style: ElevatedButton.styleFrom(
@@ -70,7 +72,7 @@ class CreateKategoriView extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Save',
+                  'Update',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

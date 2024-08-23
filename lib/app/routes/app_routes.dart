@@ -12,9 +12,13 @@ abstract class Routes {
   static const BOTTOM_MENU = _Paths.BOTTOM_MENU;
   static const KATEGORI = _Paths.KATEGORI;
   static const CREATE_KATEGORI = _Paths.CREATE_KATEGORI;
-  static const EDIT = _Paths.EDIT_KATEGORI;
+  static const EDIT_KATEGORI = _Paths.EDIT_KATEGORI;
   static const SHOW_KATEGORI = _Paths.SHOW_KATEGORI;
-
+  static const TAG = _Paths.TAG;
+  static const CREATE_TAG = _Paths.CREATE_TAG;
+  static const EDIT_TAG = _Paths.EDIT_TAG;
+  static const SHOW_TAG = _Paths.SHOW_TAG;
+  static const USER = _Paths.USER;
 }
 
 abstract class _Paths {
@@ -22,7 +26,6 @@ abstract class _Paths {
   static const HOME = '/home';
   static const COUNTER = '/counter';
   static const BIODATA = '/biodata';
-  static const OUTPUT = '/output';
   static const REGISTER = '/register';
   static const LOGIN = '/login';
   static const PROFILE = '/profile';
@@ -31,4 +34,9 @@ abstract class _Paths {
   static const CREATE_KATEGORI = '/kategori/create';
   static const EDIT_KATEGORI = '/kategori/edit';
   static const SHOW_KATEGORI = '/kategori/show';
+  static const TAG = '/tag';
+  static const CREATE_TAG = '/tag/create';
+  static const EDIT_TAG = '/tag/edit';
+  static const SHOW_TAG = '/tag/show';
+  static const USER = '/user';
 }

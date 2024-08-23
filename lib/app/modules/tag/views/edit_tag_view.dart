@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../data/kategori_model.dart';
-import '../controllers/kategori_controller.dart';
+import '../../../data/tag_model.dart';
+import '../controllers/tag_controller.dart';
 
-class CreateKategoriView extends StatelessWidget {
-  final KategoriController controller = Get.find();
+class EditTagView extends StatelessWidget {
+  final TagController controller = Get.find();
 
-  final TextEditingController namaKategoriController = TextEditingController();
-  final TextEditingController slugController = TextEditingController();
+  final TextEditingController namaTagController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final DataTag tag = Get.arguments;
+    namaTagController.text = tag.namaTag!;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Kategori',
+          'TAG',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -29,7 +31,7 @@ class CreateKategoriView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Tambah Kategori',
+              'Update tag',
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -38,7 +40,7 @@ class CreateKategoriView extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextField(
-              controller: namaKategoriController,
+              controller: namaTagController,
               decoration: InputDecoration(
                 labelText: 'Nama Kategori',
                 labelStyle: TextStyle(color: Colors.deepPurple),
@@ -55,11 +57,11 @@ class CreateKategoriView extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  final newCategory = Data(
-                    namaKategori: namaKategoriController.text,
-                    slug: slugController.text,
+                  final updatedTag = DataTag(
+                    id: tag.id,
+                    namaTag: namaTagController.text,
                   );
-                  controller.addKategori(newCategory);
+                  controller.updateTag(tag.id!, updatedTag);
                   Get.back();
                 },
                 style: ElevatedButton.styleFrom(
@@ -70,7 +72,7 @@ class CreateKategoriView extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Save',
+                  'Update',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

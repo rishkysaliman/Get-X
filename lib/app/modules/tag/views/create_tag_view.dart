@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../data/kategori_model.dart';
-import '../controllers/kategori_controller.dart';
+import '../../../data/tag_model.dart';
+import '../controllers/tag_controller.dart';
 
-class CreateKategoriView extends StatelessWidget {
-  final KategoriController controller = Get.find();
+class CreateTagView extends StatelessWidget {
+  final TagController controller = Get.find();
 
-  final TextEditingController namaKategoriController = TextEditingController();
+  final TextEditingController namaTagController = TextEditingController();
   final TextEditingController slugController = TextEditingController();
 
   @override
@@ -14,7 +14,7 @@ class CreateKategoriView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Kategori',
+          'Tag',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ class CreateKategoriView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Tambah Kategori',
+              'Tambah Tag',
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class CreateKategoriView extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextField(
-              controller: namaKategoriController,
+              controller: namaTagController,
               decoration: InputDecoration(
                 labelText: 'Nama Kategori',
                 labelStyle: TextStyle(color: Colors.deepPurple),
@@ -55,11 +55,11 @@ class CreateKategoriView extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  final newCategory = Data(
-                    namaKategori: namaKategoriController.text,
+                  final newCategory = DataTag(
+                    namaTag: namaTagController.text,
                     slug: slugController.text,
                   );
-                  controller.addKategori(newCategory);
+                  controller.addTag(newCategory);
                   Get.back();
                 },
                 style: ElevatedButton.styleFrom(

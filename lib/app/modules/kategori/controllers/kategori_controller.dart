@@ -2,11 +2,11 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:myapp/app/data/kategori_model.dart';
-import 'package:myapp/app/utils/api.dart';
+import '../../../data/kategori_model.dart';
+import '../../../utils/api.dart';
 
 class KategoriController extends GetxController {
-  var KategoriList = <Data>[].obs;
+  var kategoriList = <Data>[].obs;
   var isLoading = true.obs;
 
   final String baseUrl = '${BaseUrl.api}/kategori';
@@ -17,6 +17,7 @@ class KategoriController extends GetxController {
     super.onInit();
   }
 
+  // Fetch kategori
   void fetchKategories() async {
     try {
       isLoading(true);
@@ -24,79 +25,78 @@ class KategoriController extends GetxController {
       if (response.statusCode == 200) {
         var jsonResponse = json.decode(response.body);
         var kategori = Kategori.fromJson(jsonResponse);
-        KategoriList.value = kategori.data!;
+        kategoriList.value = kategori.data!;
       } else {
-        Get.snackbar('Error', 'Failed to load Kategori');
+        Get.snackbar("Error", "Failed to fetch categories");
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to load Kategori: $e');
+      Get.snackbar("Error", "Failed to fetch categories: $e");
     } finally {
       isLoading(false);
     }
   }
 
-  // Add Kategori
+  // Add kategori
   Future<void> addKategori(Data newKategori) async {
     try {
       isLoading(true);
       final response = await http.post(
         Uri.parse(baseUrl),
-        headers: {'Content-Type': 'application/json'},
+        headers: {"Content-Type": "application/json"},
         body: json.encode(newKategori.toJson()),
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         fetchKategories();
         Get.back();
-        Get.snackbar('Success', 'Kategori added successfully');
+        Get.snackbar("Success", "Category added successfully");
       } else {
-        Get.snackbar('Error', 'Failed to add Kategori');
+        Get.snackbar("Error", "Failed to add category");
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to add Kategori: $e');
+      Get.snackbar("Error", "Failed to add category: $e");
     } finally {
       isLoading(false);
     }
   }
 
-  // Update Kategori
+  // Update kategori
   Future<void> updateKategori(int id, Data updatedKategori) async {
     try {
-    isLoading(true);
-    final Response = await http.put(
-      Uri.parse('$baseUrl/$id'),
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode(updatedKategori.toJson()),
-    );
-    if (Response.statusCode == 200) {
-      fetchKategories();
-      Get.back();
-      Get.snackbar('Success', 'Kategori updated successfully');
-    } else {
-      Get.snackbar('Error', 'Failed to update Kategori');
-    }
-  } catch (e) {
-    Get.snackbar('Error', 'Failed to update Kategori: $e');
-  } finally {
-    isLoading(false);
+      isLoading(true);
+      final response = await http.put(
+        Uri.parse('$baseUrl/$id'),
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(updatedKategori.toJson()),
+      );
+      if (response.statusCode == 200) {
+        fetchKategories();
+        Get.back();
+        Get.snackbar("Success", "Category updated successfully");
+      } else {
+        Get.snackbar("Error", "Failed to update category");
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Failed to update category: $e");
+    } finally {
+      isLoading(false);
     }
   }
 
-// Delete Kategori
-Future<void> deleteKategori(int id) async {
-  try {
-    isLoading(true);
-    final response = await http.delete(Uri.parse('$baseUrl/$id'));
-    if (response.statusCode == 200) {
-      fetchKategories();
-      Get.snackbar('Success', 'Kategori deleted successfully');
-    } else {
-      Get.snackbar('Error', 'Failed to delete Kategori');
+  // Delete kategori
+  Future<void> deleteKategori(int id) async {
+    try {
+      isLoading(true);
+      final response = await http.delete(Uri.parse('$baseUrl/$id'));
+      if (response.statusCode == 200) {
+        fetchKategories();
+        Get.snackbar("Success", "Category deleted successfully");
+      } else {
+        Get.snackbar("Error", "Failed to delete category");
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Failed to delete category: $e");
+    } finally {
+      isLoading(false);
     }
-  } catch (e) {
-    Get.snackbar('Error', 'Failed to delete Kategori: $e');
-  } finally {
-    isLoading(false);
   }
- }
 }
-
